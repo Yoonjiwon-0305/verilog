@@ -3,65 +3,61 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_decorder_input_controller_behav.wdb" id="1">
+      <db_ref path="tb_InputControl_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_decorder_input_controller" />
+            <top_module name="tb_InputControl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1000000fs"></ZoomEndTime>
-      <Cursor1Time time="388311fs"></Cursor1Time>
+      <ZoomEndTime time="168013fs"></ZoomEndTime>
+      <Cursor1Time time="135000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="188"></NameColumnWidth>
-      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+      <NameColumnWidth column_width="144"></NameColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
-   <wvobject fp_name="/tb_decorder_input_controller/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/iClk" type="logic">
+      <obj_property name="ElementShortName">iClk</obj_property>
+      <obj_property name="ObjectShortName">iClk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/iRst" type="logic">
+      <obj_property name="ElementShortName">iRst</obj_property>
+      <obj_property name="ObjectShortName">iRst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/i_btn_fpga" type="array">
-      <obj_property name="ElementShortName">i_btn_fpga[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_btn_fpga[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/i_sw_fpga" type="array">
-      <obj_property name="ElementShortName">i_sw_fpga[2:0]</obj_property>
-      <obj_property name="ObjectShortName">i_sw_fpga[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/i_uart_data" type="array">
-      <obj_property name="ElementShortName">i_uart_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">i_uart_data[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/i_uart_done" type="logic">
-      <obj_property name="ElementShortName">i_uart_done</obj_property>
-      <obj_property name="ObjectShortName">i_uart_done</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/uut/U_IN_CONTROLLER/btn" type="array">
-      <obj_property name="ElementShortName">btn[4:0]</obj_property>
-      <obj_property name="ObjectShortName">btn[4:0]</obj_property>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/iBtnPulse" type="array">
+      <obj_property name="ElementShortName">iBtnPulse[4:0]</obj_property>
+      <obj_property name="ObjectShortName">iBtnPulse[4:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/uut/U_IN_CONTROLLER/sw" type="array">
-      <obj_property name="ElementShortName">sw[2:0]</obj_property>
-      <obj_property name="ObjectShortName">sw[2:0]</obj_property>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/iSwLevel" type="array">
+      <obj_property name="ElementShortName">iSwLevel[2:0]</obj_property>
+      <obj_property name="ObjectShortName">iSwLevel[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/iSwPulse" type="array">
+      <obj_property name="ElementShortName">iSwPulse[2:0]</obj_property>
+      <obj_property name="ObjectShortName">iSwPulse[2:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/uut/U_IN_CONTROLLER/uart_data" type="array">
-      <obj_property name="ElementShortName">uart_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">uart_data[7:0]</obj_property>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/oMode" type="array">
+      <obj_property name="ElementShortName">oMode[1:0]</obj_property>
+      <obj_property name="ObjectShortName">oMode[1:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_decorder_input_controller/select_data" type="array">
-      <obj_property name="ElementShortName">select_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">select_data[7:0]</obj_property>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/oModeLock" type="logic">
+      <obj_property name="ElementShortName">oModeLock</obj_property>
+      <obj_property name="ObjectShortName">oModeLock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/oCmdValid" type="logic">
+      <obj_property name="ElementShortName">oCmdValid</obj_property>
+      <obj_property name="ObjectShortName">oCmdValid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_InputControl/uut/uInputDistributor/oCmdCode" type="array">
+      <obj_property name="ElementShortName">oCmdCode[4:0]</obj_property>
+      <obj_property name="ObjectShortName">oCmdCode[4:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

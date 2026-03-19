@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module tb_fifo ();
+module tb_fifo_1 ();
 
     reg clk, reset, push, pop;
     reg  [7:0] push_data;
@@ -9,21 +9,21 @@ module tb_fifo ();
 
     reg rand_pop, rand_push;
     reg [7:0] rand_data;
-    reg [7:0] compare_data[0:3];
-    reg [1:0] push_cnt, pop_cnt;
+    reg [7:0] compare_data[0:15];
+    reg [3:0] push_cnt, pop_cnt;
 
     integer pass_cnt, fail_cnt;
     integer i;
 
     fifo dut (
 
-        .clk(clk),
+        .clk  (clk),
         .reset(reset),
-        .push(push),
-        .pop(pop),
-        .push_data(push_data),
-        .pop_data(pop_data),
-        .full(full),
+        .push (push),
+        .pop  (pop),
+        .wdata(push_data),
+        .rdata(pop_data),
+        .full (full),
         .empty(empty)
 
     );
@@ -50,15 +50,16 @@ module tb_fifo ();
 
         reset = 0;
 
-        for (i = 0; i < 5; i = i + 1) begin
+        for (i = 0; i < 16; i = i + 1) begin
 
             push = 1;
             push_data = 8'h61 + i;
             @(negedge clk);
         end
+        
         push = 0;
-
-        for (i = 0; i < 5; i = i + 1) begin
+        
+        for (i = 0; i < 16; i = i + 1) begin
 
             pop = 1;
             @(negedge clk);

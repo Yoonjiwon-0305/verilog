@@ -1,96 +1,104 @@
 `timescale 1ns / 1ps
 
-module tb_decorder_input_controller();
+module tb_InputControl();
 
-    reg clk;
-    reg reset;
-    reg [4:0] i_btn_fpga;
-    reg [2:0] i_sw_fpga;
-    reg [7:0] i_uart_data;
-    reg i_uart_done;
-    wire [7:0] select_data;
+    reg        iClk;
+    reg        iRst;
+    reg  [4:0] iBtnPulseFpga;
+    reg  [2:0] iSwLevelFpga;
+    reg  [4:0] iBtnPulsePc;
+    reg        iSw1PulsePc;
+    reg        iSw2PulsePc;
+    reg        iSw3PulsePc;
+    reg        iReqFndPc;
+    reg        iReqStatePc;
+    reg        iReqStopwatchPc;
+    reg        iReqWatchPc;
+    reg        iReqHcsr04Pc;
+    reg        iReqDht11Pc;
 
-    decorder_input_controller uut (
-        .clk(clk),
-        .reset(reset),
-        .i_btn_fpga(i_btn_fpga),
-        .i_sw_fpga(i_sw_fpga),
-        .i_uart_data(i_uart_data),
-        .i_uart_done(i_uart_done),
-        .select_data(select_data)
+    wire [1:0] oMode;
+    wire       oModeLock;
+    wire       oCmdValid;
+    wire [4:0] oCmdCode;
+
+    InputControl uut (
+        .iClk(iClk),
+        .iRst(iRst),
+        .iBtnPulseFpga(iBtnPulseFpga),
+        .iSwLevelFpga(iSwLevelFpga),
+        .iBtnPulsePc(iBtnPulsePc),
+        .iSw1PulsePc(iSw1PulsePc),
+        .iSw2PulsePc(iSw2PulsePc),
+        .iSw3PulsePc(iSw3PulsePc),
+        .iReqFndPc(iReqFndPc),
+        .iReqStatePc(iReqStatePc),
+        .iReqStopwatchPc(iReqStopwatchPc),
+        .iReqWatchPc(iReqWatchPc),
+        .iReqHcsr04Pc(iReqHcsr04Pc),
+        .iReqDht11Pc(iReqDht11Pc),
+        .oMode(oMode),
+        .oModeLock(oModeLock),
+        .oCmdValid(oCmdValid),
+        .oCmdCode(oCmdCode)
     );
 
-    always #5 clk = ~clk;
+    always #5 iClk = ~iClk;
 
     initial begin
-        clk = 0;
-        reset = 1;
-        i_btn_fpga = 5'b00000;
-        i_sw_fpga = 3'b000;
-        i_uart_data = 8'h00;
-        i_uart_done = 0;
+        iClk = 0;
+        iRst = 1;
+        iBtnPulseFpga = 0;
+        iSwLevelFpga = 0;
+        iBtnPulsePc = 0;
+        iSw1PulsePc = 0;
+        iSw2PulsePc = 0;
+        iSw3PulsePc = 0;
+        iReqFndPc = 0;
+        iReqStatePc = 0;
+        iReqStopwatchPc = 0;
+        iReqWatchPc = 0;
+        iReqHcsr04Pc = 0;
+        iReqDht11Pc = 0;
+
+        #20 iRst = 0;
 
         #20;
-        reset = 0;
+        iBtnPulseFpga[1] = 1; 
+        #10;
+        iBtnPulseFpga[1] = 0;
+
+        #30;
+        iBtnPulseFpga[3] = 1; 
+        #10;
+        iBtnPulseFpga[3] = 0;
+
+        #30;
+        iSw1PulsePc = 1; 
+        #10;
+        iSw1PulsePc = 0;
 
         #20;
-        i_sw_fpga = 3'b100;
-        i_btn_fpga = 5'b00001;
-        i_uart_data = 8'h72; // 'r'
-        i_uart_done = 1;
-        #10;                  // 100MHz 기준 1 클락 주기
-        i_uart_done = 0;      // 틱(Tick) 신호로 만듦
+        iBtnPulsePc[1] = 1; 
+        #10;
+        iBtnPulsePc[1] = 0;
 
+        #30;
+        iBtnPulseFpga[4] = 1; 
         #10;
-        i_sw_fpga = 3'b010;
-        i_btn_fpga = 5'b00010;
-        i_uart_data = 8'h6C; // 'l'
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
+        iBtnPulseFpga[4] = 0;
 
+        #30;
+        iBtnPulsePc[1] = 1; 
         #10;
-        i_sw_fpga = 3'b001;
-        i_btn_fpga = 5'b01000;
-        i_uart_data = 8'h75; // 'u'
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
+        iBtnPulsePc[1] = 0;
 
+        #20;
+        iSw1PulsePc = 1; 
         #10;
-        i_sw_fpga = 3'b000;
-        i_btn_fpga = 5'b00001;
-        i_uart_data = 8'h6C;
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
+        iSw1PulsePc = 0;
 
-        #10;
-        i_sw_fpga = 3'b000;
-        i_btn_fpga = 5'b00100;
-        i_uart_data = 8'h75;
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
-
-        #10;
-        i_sw_fpga = 3'b111;
-        i_btn_fpga = 5'b11111;
-        i_uart_data = 8'h72;
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
-
-        #10;
-        i_sw_fpga = 3'b000;
-        i_btn_fpga = 5'b00000;
-        i_uart_data = 8'h64; // 'd'
-        i_uart_done = 1;
-        #10;
-        i_uart_done = 0;
-
-        #1000;
-        $stop;
+        #100 $finish;
     end
 
 endmodule
