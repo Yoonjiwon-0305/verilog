@@ -265,7 +265,7 @@ UART 경로에서는 재현되지 않고 하드웨어 경로에서만 발생한�
 
 ## 📑 발표 자료
 
-📄 [UART + ASCII decoder + stopwatch/Watch](<docs/slides/윤지원_UART + ASCII decoder + stopwatch_Watch.pdf>)
+📄 [UART + ASCII decoder + stopwatch/Watch](docs/slides/윤지원_UART_ASCII_decoder_stopwatch_Watch.pdf)
 
 ---
 
